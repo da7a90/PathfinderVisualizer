@@ -47,6 +47,9 @@ const DUMMY_OBSTACLES = [
                              '{"q":7,"r":-2,"s":-5}', '{"q":8,"r":-2,"s":-6}', '{"q":9,"r":-3,"s":-6}',
                               '{"q":10,"r":-3,"s":-7}', '{"q":4,"r":5,"s":-9}', '{"q":4,"r":6,"s":-10}',
                                '{"q":5,"r":6,"s":-11}', '{"q":5,"r":7,"s":-12}'];
+ window.onbeforeunload = (e) => {
+    window.scrollTo(0, 0);
+                                };
 export default class Pathfinder extends React.Component {
   constructor(props) {
     super(props);
@@ -54,6 +57,7 @@ export default class Pathfinder extends React.Component {
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
+      canvasPosition:{},
       hexSize: 20,
       hexOrigin: { x: 400, y: 300 },
       currentHex: { q: 0, r: 0, s: 0, x: 0, y: 0 },
@@ -76,6 +80,7 @@ export default class Pathfinder extends React.Component {
 
 
   componentDidMount(){
+    
     const { canvasWidth, canvasHeight } = this.state.canvasSize;
     this.canvasHex.width = canvasWidth;
     this.canvasHex.height = canvasHeight;
